@@ -1,11 +1,18 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Title</title>
+    <title>Administrateur Page</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <style> 
+      body {
+            background-image: url('../../asset/IMG/image1.jpg');
+            background-size: cover ;
+            height: 10%;
+        }
+    </style>
+    </style>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
@@ -15,7 +22,22 @@
             include('commun_admin.html') ;
       ?>
        
- 
+      <div class="row   m-4" style="width: 95%  ; display:flex; justify-content: center; height: 440px;">
+      
+         <div class='col-lg-12 col-md-10 col-sm-10 col-10 bg-dark justify-content-around'>
+              <div class="row">
+                  <div class="col-lg-4 col-md-4  col-sm-10 m-4 bg-light rounded" style="width: 80% ;height:440px" >
+
+                        <input type="file" name="" id="">
+                  </div>
+                    
+                  <div class="col-lg-7 col-md-6 col-sm-10 bg-light m-4 rounded" style="width: 80%  ;height:440px" >
+                         dddddddddddddddddddddd
+                  </div>
+              </div>
+         </div>
+      
+      </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

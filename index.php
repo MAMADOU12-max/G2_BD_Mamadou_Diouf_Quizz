@@ -14,25 +14,26 @@
        $login = $_POST['login'] ;
        $password = $_POST['password'] ;
           
-       $reponse = $bdd->query('SELECT * FROM user')  ;
-       $log =$login ;
+       $reponse = $bdd->query('SELECT * FROM user WHERE adresse_user = "'.$login.'"');
+    
        
        //  On affiche chaque entrée une à une
        while ($donnees = $reponse->fetch()){
-            if ($login == $donnees['login'] && $password == $donnees['password'] && $donnees['role'] == "admin") {
+            if ($login == $donnees['adresse_user'] && $password == $donnees['password'] && $donnees['role'] == "admin") {
                 // echo "admin"  ;
+                header('location:src/Pages/adminpage.php') ;
             }
-            elseif ($login == $donnees['login'] && $password == $donnees['password'] && $donnees['role'] == "joueur") {
-              // echo "joueur" ;
+            elseif ($login == $donnees['adresse_user'] && $password == $donnees['password'] && $donnees['role'] == "joueur") {
+                header('location:src/Pages/gamepage.php') ;
             }
-            elseif ($login == $donnees['login'] && $password !== $donnees['password'] && $donnees['role'] == "joueur") {
+            elseif ($login == $donnees['adresse_user'] && $password !== $donnees['password'] && $donnees['role'] == "joueur") {
                 $password_error  = "your password is not valid" ;
             
             }
-            elseif ($login !== $donnees['login'] && $password == $donnees['password'] && $donnees['role'] == "joueur") {
+            elseif ($login !== $donnees['adresse_user'] && $password == $donnees['password'] && $donnees['role'] == "joueur") {
                 $login_error = "your login is not valid" ;
             } 
-            elseif ($login !== $donnees['login'] && $password !== $donnees['password'] ) {
+            elseif ($login !== $donnees['adresse_user'] && $password !== $donnees['password'] ) {
                 $login_error = "not corresponding, please data create account if you ain't please " ;
             } 
           
@@ -91,31 +92,31 @@
                   <form action="" method="post"> 
                     <!-- Default input name -->
                     <label for="defaultFormNameModalEx">LOGIN</label>
-                    <input type="text" name="login" id="defaultFormNameModalEx" class="form-control form-control-sm">
-                    <span class="text-danger"><?php echo $login_error; ?></span>
+                    <input type="text" id="input1" name="login" id="defaultFormNameModalEx" class="form-control form-control-sm">
+                    <span id="login_error" class="text-danger"><?php echo $login_error; ?></span>
                     <br>
             
                     <!-- Default input email -->
                     <label for="defaultFormEmailModalEx">PASSWORD</label>
-                    <input type="password" name="password" id="defaultFormEmailModalEx" class="form-control form-control-sm">
-                    <span class="text-danger"><?php echo  $password_error; ?></span> 
+                    <input type="password" id="input2" name="password" id="defaultFormEmailModalEx" class="form-control form-control-sm">
+                    <span id="password_error" class="text-danger"><?php echo  $password_error; ?></span> 
                     <br>
             
                     <div class="text-center mt-4 mb-2 text-align-between">
-                      <button type="submit" name="sign_in" class="btn btn-info">SIGN IN</button>
+                      <button type="submit" id="bouton" name="sign_in" class="btn btn-info">SIGN IN</button>
                       <button type="submit" name="create_account" class="btn  ">Create account </button>
                     </div>
 
                   </form>  
           
-                </div>
+                </div> 
               </div>
               <!--/.Content-->
             </div>
             <!--/Modal: Contact form-->
 
               <!-- footer -->
-            <div class="row light bg-dark p-4 "  style="margin-top: 8%;  align-items: center;">
+            <div class="row light bg-dark p-4 "  style="margin-top: 11%;  align-items: center;">
                  
           </div>
           
@@ -131,3 +132,25 @@
     <link rel="stylesheet" href="asset/JS/bootstrap.js">
   </body>
 </html>
+
+<script>
+ 
+   // validation au niveau dela page de connexion
+        var numb1 = document.getElementById('input1') ;
+        var numb2 = document.getElementById('input2') ;
+        document.getElementById('bouton').addEventListener('click',function(e){
+          
+            if ((numb1.value  == "" &&  numb2.value  == "" )) {
+                //    alert('you must fill all box')
+                e.preventDefault();
+                login_error.textContent = "you must fill all box" ;
+            }else if(numb1.value  == "" &&  numb2.value  != "" ){
+                        e.preventDefault();
+                login_error.textContent = "you must give a login" ;
+            }else if(numb1.value  != "" &&  numb2.value == "" ){
+                        e.preventDefault();
+                password_error.textContent = "****lake password****" ;
+            }
+        
+        })
+</script>
