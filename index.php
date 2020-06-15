@@ -1,4 +1,5 @@
 <?php 
+session_start() ;
     try
     {
       // On se connecte à MySQL
@@ -21,10 +22,12 @@
        while ($donnees = $reponse->fetch()){
             if ($login == $donnees['adresse_user'] && $password == $donnees['password'] && $donnees['role'] == "admin") {
                 // echo "admin"  ;
+
                 header('location:src/Pages/adminpage.php') ;
             }
             elseif ($login == $donnees['adresse_user'] && $password == $donnees['password'] && $donnees['role'] == "joueur") {
-                header('location:src/Pages/gamepage.php') ;
+              $_SESSION['courantPage'] = 1 ; 
+              header('location:src/Pages/gamepage.php') ;
             }
             elseif ($login == $donnees['adresse_user'] && $password !== $donnees['password'] && $donnees['role'] == "joueur") {
                 $password_error  = "your password is not valid" ;

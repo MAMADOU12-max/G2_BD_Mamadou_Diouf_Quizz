@@ -3,45 +3,47 @@
   if (isset($_POST['logout'])) {
       header( 'location:../../index.php'); 
   }
-
-  if(isset($_POST['avatar'])){ 
+  
+     // chargement de l'image
+     if(isset($_POST['img_charge'])){ 
                               
-    $dossier = '../../asset/IMG/Images/img/';
-    $fichier = basename($_FILES['avatar']['name']);
-    $taille_maxi = 1000000;
-    $taille = filesize($_FILES['avatar']['tmp_name']);
-    $extensions = array('.png', '.gif', '.jpg', '.jpeg');
-    $extension = strrchr($_FILES['avatar']['name'], '.'); 
-    //Début des vérifications de sécurité...
-    if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
-    {
-         $erreur = 'Vous devez uploader un fichier de type png, gif, jpg, jpeg, txt ou doc...';
-    }
-    if($taille>$taille_maxi)
-    {
-         $erreur = 'Le fichier est trop gros...';
-    }
-    if(!isset($erreur)) //S'il n'y a pas d'erreur, on upload
-    {
-         //On formate le nom du fichier ici...
-         $fichier = strtr($fichier, 
-              'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ', 
-              'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
-         $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
-         if(move_uploaded_file($_FILES['avatar']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
-         {
-              echo 'Upload effectué avec succès !';
-         }
-         else //Sinon (la fonction renvoie FALSE).
-         {
-              echo 'Echec de l\'upload !';
-         }
-    }
-    else
-    {
-         echo $erreur;
-    }
-}else{ $fill_tof =" " ;}
+        $dossier = '../../asset/IMG/Images/img/';
+        $fichier = basename($_FILES['avatar']['name']);
+        $taille_maxi = 1000000;
+        $taille = filesize($_FILES['avatar']['tmp_name']);
+        $extensions = array('.png', '.gif', '.jpg', '.jpeg');
+        $extension = strrchr($_FILES['avatar']['name'], '.'); 
+        //Début des vérifications de sécurité...
+        if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
+        {
+             $erreur = 'Vous devez uploader un fichier de type png, gif, jpg, jpeg, txt ou doc...';
+        }
+        if($taille>$taille_maxi)
+        {
+             $erreur = 'Le fichier est trop gros...';
+        }
+        if(!isset($erreur)) //S'il n'y a pas d'erreur, on upload
+        {
+             //On formate le nom du fichier ici...
+             $fichier = strtr($fichier, 
+                  'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ', 
+                  'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
+             $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
+             if(move_uploaded_file($_FILES['avatar']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
+             {
+                  echo 'Upload effectué avec succès !';
+             }
+             else //Sinon (la fonction renvoie FALSE).
+             {
+                  echo 'Echec de l\'upload !';
+             }
+        }
+        else
+        {
+             echo $erreur;
+        }
+   }else{ $fill_tof = "" ;}
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -138,14 +140,14 @@
                            <!--choose maxxx size-->
                            <input type="hidden" name="MAX_FILE_SIZE" value="1000000"> 
                                   <!---input file and code for download image-->                          
-                            <input type="file" id=" " name="avatar"  class="bouton" class="form-control"
+                            <input type="file" id="form_avatar" class="bouton" class="form-control"
                                                           
                              onchange="document.getElementById('photo').src=window.URL.createObjectURL(this.files[0])">
                               <!--place i want show photo-->
                            <div class="cercle"> 
-                                <img name="avatar" style="height: 200px; width: 200px; border-radius: 130px;"  id="form_avatar" alt="" >
+                                <img name="img_charge" style="height: 200px; width: 200px; border-radius: 130px;" id="photo" alt="" >
                             
-                                <div style="margin-left:96px;" class="error"><?php echo $fill_tof ;?></div>
+                                <div style="margin-left:96px;" class="error"><?php echo $fill_tof  ;?></div>
                            </div>
  
                            <!-- buttons -->

@@ -1,15 +1,18 @@
-<!DOCTYPE html>
+<?php
+  if(isset($_POST['logout'])){
+    header('location:../../index.php') ;
+  } 
+?> 
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
     <title>Create_question</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <style> 
-      body {
-            background-image: url('../../asset/IMG/image1.jpg');
-            background-size: cover ;
-            height: 10%;
-        }
+      
         .select{
           height: 41px;
           border: 2px ,solid , black;
@@ -23,104 +26,130 @@
           margin-top:-15px;
           color:red;
         }
-    </style> 
+      
+        .cercle{
+            background-image: url('../../asset/IMG/images/avatar.jpg');
+            width: 180px;
+            height: 180px;
+            position: relative;
+            margin-top:15%;
+            margin-left:50px;
+            border-radius: 130px;
+            border: 2px solid black;
+        }
+        
+    </style>  
 
     <!-- bootstrap local -->
-    <link rel="stylesheet" href="../../asset/CSS/bootstrap.css">
-    <script src="https://kit.fontawesome.com/b6aaa0cf5c.js" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="../../asset/CSS/bootstrap.css">
+    <script src="https://kit.fontawesome.com/b6aaa0cf5c.js" crossorigin="anonymous"></script></head>
+  <body>
+     <?php
+        include('commun_admin.php') ;
+     ?>
+    <form action="" method="post" id="Newform">
+       <div class="container-fluid ">
+           <div class="row m-lg-5 m-md-5 m-sm-2 m-2 bg-dark">
 
-</head>
-<body>
-
-<?php
-            include('commun_admin.html') ;
-      ?>
-    
-    <form action="" method="POST">
-
-
-    <div class="row   m-4" style="width: 95%  ; display:flex; justify-content: center; height: 440px;">
-      
-      <div class='col-lg-12 col-md-10 col-sm-10 col-10 bg-dark justify-content-around'>
-           <div class="row">
-               <div class="col-lg-4 col-md-4 m-md-4  col-sm-12 m-sm-4 m-lg-4 col-10 mx-4 bg-light rounded" style="width: 80% ;height:440px" >
-               <div class="afficher"> </div>
-                     <input type="file" name="" id="">
-               </div>
-                 
-               <!-- inscription -->
-               <div class="col-lg-7 col-md-6 col-sm-10 bg-light m-4 justify-content-arround rounded" style="width: 80%  ;height:440px" >
-                     <!-- form incription -->
-                 <div class="row " >
-                   <div class="col-lg-6 col-md-6 col-sm-12 col-12 text-center"> 
-
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1"><strong>WRITE YOUR QUESTION</strong> </label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                            <span class="error_form" id="firstname_error_message">*******</span>  
-                        </div> 
-                         <span class="error_form" id="firstname_error_message">*******</span><br>  
-                        
-                         </strong></label>
-                         <label for=""><strong>MARK  <input type="number" id=" " class="input-form" name="mark" ><br><br> 
-                         <span class="error_form" id="lastname_error_message">*********</span><br><br>
-                        
-                         <div style=" margin-left: 22%; ">
-                           <label for="">Select answer type</label>
-                             <table >  
-                                <tr>  
-                                    <td>    
-                                       <select class="select" name="" id="" placeholder="select type">  
-                                          <option value="simple">opt1</option> 
-                                          <option value="text">opt2</option>
-                                          <option value="">opt3</option>
-                                       </select>  
-                                    </td>  
-                                    <td>   
-                                       <button class="add" id="add" name="add"><i class="fas fa-plus fa-2x"></i></button> 
-                                    </td>   
-                                </tr>     
-                             </table>
-                       </div>       
-                    
-                   </div>
-                   <!-- submit picture -->
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-5 bg-light">
-                        <!-- places inputs generate -->nnnnnnnnnnnnnnnn
+               <div class="col-lg-3 col-md-4 col-sm-10 col-9 m-3  bg-light " style="height:55vh">
+                    <div class="afficher"> 
+                        <?php
+                            include('photo.php') ;
+                        ?>
+                          <!--choose maxxx size-->
+                          <input type="hidden" name="MAX_FILE_SIZE" value="1000000"> 
+                          <!---input file and code for download image-->                          
+                         <input type="hidden" id="form_avatar" class="bouton" class="form-control" 
+                          onchange="document.getElementById('photo').src=window.URL.createObjectURL(this.files[0])"> 
+                              <!--place i want show photo-->
+                          <div class="cercle"> 
+                                <img name="img_charge" style="height: 170px; width: 170px; border-radius: 130px;" id="photo" alt="" >
+                            
+                                <div style="margin-left:96px;" class="error"><?php echo $fill_tof  ;?></div>
+                          </div>
                     </div>
-                 </div>
-
                </div>
-           </div>
-      </div>
-   
-   </div>
- 
-    </form> 
 
+               <div class="col-lg-4 col-md-6 col-sm-10  col-9 m-3 bg-light" style="height:55vh">
+                    <label for="exampleFormControlTextarea1"><strong>WRITE YOUR QUESTION</strong></label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="questions"></textarea><br><br>
+                    <span class="error_form" id="firstname_error_message">*******</span><br>
+                    
+                    
+                    <label for=""><strong>MARK  
+                    <input type="number" id="mark" class="input-form" name="mark" > </strong></label><br><br>   
+                    <span class="error_form" id="soumet">*********</span><br><br>
+                </div>
+
+               <div class="col-lg-4 col-md-6 col-sm-10 col-9 m-3 bg-light">
+                   <!-- submit picture partie select et genere input-->
+        
+                    <label for=""><strong><h2>Select answer type</h2></strong></label>
+
+                    <div id="inputs" class="Gn">
+                        <label for=""><b>select answer type</b></label>            
+                        <select style="height: 35px; width: 160px;" placeholder="Donnez le type de réponse" name="choix" id="choix">
+                            <option  value="simple">answer with one choice</option>
+                            <option value="multiple">many answer choices</option>
+                            <option value="texte">text</option>
+                        </select>
+                        <button type="button" id="btn-first" class="btn-first" onClick="genere()";>+</button>
+                    </div> 
+                    <button type="button" id="save" class="btn btn-dark">save</button> 
+                    <div> <button class="btn btn-outline-warning mt-5 self-items-left" name="logout"> LOG OUT </button> </div>
+                  
+                </div>
+       </div>
+    </form>  
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../../asset/JS/bootstrap.js"></script>
-</body>
-</html>
+    <script src="../../asset/JS/generate_inputs.js"></script>
+  </body>
+</html> 
+<script>  
+        
+     $(document).ready(function(){  
+         
+     
+         
+        $("#save").click(function(){ 
+          
+                // if($('#choix option:selected').val() == 'multiple'){     
+                //     var type = "many choices" ;
+                // }else if($('#choix option:selected').val() == 'simple'){
+                //     var type = "one choice" ;
+                // }else if($('#choix option:selected').val() == 'texte'){
+                //     var type = "choice text" ;
+                // } 
+          
+                var ask = $('#exampleFormControlTextarea1').val() ;
+                var mark = $('#mark').val() ; 
+                var choix = $('#choix').val() ; 
+                var reponse = $('#Newform').serialize() ; 
+ 
+                // var donnes = 'question='+ask+'&mark='+mark+'&type='+type+'&reponses='+reponse ; 
+                         
+                    $.ajax( {
+                            type : "POST" ,
+                            url : "sendQuestion.php" ,
+                            data : reponse ,
+                            success : function (){
 
-<script>
-  $(document).ready(function(){
-     var i=0 ;
-     $('#add').click(function(){
-          if (choix == "simple") {
-              alert('simple') ;
-          }else if(choix=="text"){
-            alert('text')
-          }
+                    
+                            
+                            console.log(reponse);
+                            alert("ok") ;
+                        }
+                    } );
+                        
+                  
+        })
+
+        
         
      })
-
-  }) 
-
+        
+      
 </script>
-<script src="je mets ici le chemin du dossier"></script>
-
-
-
-
+ 
  

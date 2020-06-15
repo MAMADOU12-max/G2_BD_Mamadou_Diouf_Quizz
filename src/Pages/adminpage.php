@@ -19,25 +19,21 @@
   <body>
     
       <?php
-            include('commun_admin.html') ;
+            include('commun_admin.php') ;
       ?>
        
-      <div class="row   m-4" style="width: 95%  ; display:flex; justify-content: center; height: 440px;">
-      
-         <div class='col-lg-12 col-md-10 col-sm-10 col-10 bg-dark justify-content-around'>
-              <div class="row">
-                  <div class="col-lg-4 col-md-4  col-sm-10 m-4 bg-light rounded" style="width: 80% ;height:440px" >
-
-                        <input type="file" name="" id="">
-                  </div>
-                    
-                  <div class="col-lg-7 col-md-6 col-sm-10 bg-light m-4 rounded" style="width: 80%  ;height:440px" >
-                         dddddddddddddddddddddd
-                  </div>
-              </div>
-         </div>
-      
-      </div>
+       <div class="container-fluid ">
+           <div class="row m-lg-5 m-md-5 m-sm-2 m-2 bg-dark">
+               <div class="col-lg-4 col-md-4 col-sm-10 col-9 m-4  bg-light " style="height:55vh">
+                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorum illo eius dignissimos ea animi a molestiae ducimus nostrum, amet ullam eligendi labore nam fugit reprehenderit molestias incidunt voluptatem qui rerum nulla. Ut, doloribus maiores. Omnis ea consectetur natus recusandae illo, nemo aspernatur tenetur libero est distinctio minus, dignissimos, dolore temporibus necessitatibus porro hic eligendi non qui? Voluptates, earum laborum eligendi possimus beatae  
+               </div>
+               <div class="col-lg-7 col-md-6 col-sm-10  col-9 m-4 bg-light">
+                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut vitae sint in placeat. Fuga nisi neque quasi itaque magnam dolorem reprehenderit esse quidem voluptatum. Iste consequatur sint excepturi. Quam, voluptate!Z
+                   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis asperiores ad vitae consectetur excepturi. Culpa cum maxime aliquam aut in voluptate adipisci, nihil aliquid recusandae distinctio voluptatum aspernatur quaerat quos provident facere numquam nulla id qui! Perferendis nihil labore quaerat deleniti impedit, nulla deserunt porro sed soluta facilis? Magni aspernatur nisi fugit  
+               </div>
+               
+           </div>
+       </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

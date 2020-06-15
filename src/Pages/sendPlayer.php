@@ -6,6 +6,7 @@
         $lastname = $_POST['prenom'];
         $login = $_POST['login'];
         $password = $_POST['password'];
+        $avatar = $_POST['avatar'] ;
         
         
 
@@ -15,7 +16,7 @@
         $query = $cnx->prepare($sql);
         $query->execute(); 
 
-         
+           
  
     } 
 
